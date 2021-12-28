@@ -1,4 +1,4 @@
-# andersenTeam
+# andersenTeam Alexey
 Реализовать имплементацию интерфейса с занятия.
 Должны присутствовать основные методы ArrayList - 
 * add

@@ -5,7 +5,7 @@ package ru.andersen.listImpl;
 
 public class MyArrayList<E> {
     private final int INITIAL_CAPACITY = 5;
-    private final Object[] LOCALARRAY = {};
+    private final Object[] LOCAL_ARRAY = {};
 
     private int size = 0;
 }
