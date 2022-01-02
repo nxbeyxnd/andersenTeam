@@ -6,7 +6,7 @@ package ru.andersen.listImpl;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Comparator<E>{
+public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Comparator<E> {
     private final int INITIAL_CAPACITY = 5;
     private final Object[] DEFAULT_LOCAL_ARRAY = {};
     private Object[] localArray = {};
@@ -38,14 +38,10 @@ public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Co
 
     @Override
     public void add(int index, Object o) {
-        try {
-            Object[] temp = this.localArray;
-            changeSize(++size);
-            System.arraycopy(temp, index - 1, this.localArray, index, size - index);
-            localArray[index] = o;
-        } catch (ArrayIndexOutOfBoundsException e){
-            e.printStackTrace();
-        }
+        Object[] temp = this.localArray;
+        changeSize(++size);
+        System.arraycopy(temp, index - 1, this.localArray, index, size - index);
+        localArray[index] = o;
     }
 
     /**
