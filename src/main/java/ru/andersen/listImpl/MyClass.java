@@ -28,13 +28,21 @@ public class MyClass implements Comparable<MyClass>{
         this.age = age;
     }
 
+    @Override
     public int compareTo(MyClass user) {
-        int comparation = 0;
-        comparation = name.compareTo(user.name);
+        int comparation = name.compareTo(user.name);
         if (comparation == 0){
             comparation = Integer.compare(age, user.age);
         }
         return comparation;
+    }
+
+    public int compareByName(MyClass user){
+        return name.compareTo(user.name);
+    }
+
+    public int compareByAge(MyClass user){
+        return Integer.compare(this.age, user.age);
     }
 
     @Override
