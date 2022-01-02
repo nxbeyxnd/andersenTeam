@@ -6,7 +6,7 @@ package ru.andersen.listImpl;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Comparator<E> {
+public class MyArrayListImpl<E extends Comparator<MyClass>> implements MyArrayList, Comparator<MyClass> {
     private final int INITIAL_CAPACITY = 5;
     private final Object[] DEFAULT_LOCAL_ARRAY = {};
     private Object[] localArray = {};
@@ -100,7 +100,15 @@ public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Co
 
     @Override
     public void sort() {
-
+        for (int k = size; k != 0; k--) {
+            for (int i = 0, j = 1; j < size; i++, j++) {
+                if (compare((MyClass) localArray[i], (MyClass) localArray[j]) > 0){
+                    Object temp = localArray[i];
+                    localArray[i] = localArray[j];
+                    localArray[j]= temp;
+                }
+            }
+        }
     }
 
     @Override
@@ -119,7 +127,7 @@ public class MyArrayListImpl<E extends Comparable<?>> implements MyArrayList, Co
     }
 
     @Override
-    public int compare(E o1, E o2) {
-        return 0;
+    public int compare(MyClass o1, MyClass o2) {
+        return o1.compareTo(o2);
     }
 }
