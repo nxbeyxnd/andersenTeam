@@ -1,11 +1,15 @@
-package ru.andersen.listImpl;
-/* 
-28.12.2021: Alexey created this file inside the package: ru.andersen.listImpl 
+package ru.andersen.listImpl;/*
+01.01.2022: Alexey created this file inside the package: ru.andersen.listImpl 
 */
 
-public class MyArrayList<E> {
-    private final int INITIAL_CAPACITY = 5;
-    private final Object[] LOCAL_ARRAY = {};
-
-    private int size = 0;
+public interface MyArrayList<T> {
+    void add(T t);
+    void add(int index, T e);
+    T get(int index);
+    boolean contains(T e);
+    void set(int index, T e);
+    void remove(int index);
+    void remove(T e);
+    int size();
+    void sort();
 }
