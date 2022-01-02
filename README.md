@@ -4,8 +4,9 @@
 * [x] add
 * [x] get
 * [x] set
-* [ ] remove
+* [x] remove
 * [x] size
+* [x] contains
 * [ ] ...
 * [ ] Нужно реализовать метод sort Метод сортировки - пузырьковая. 
 
