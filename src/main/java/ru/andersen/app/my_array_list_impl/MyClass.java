@@ -1,4 +1,4 @@
-package ru.andersen.listImpl;
+package ru.andersen.app.my_array_list_impl;
 /* 
 02.01.2022: Alexey created this file inside the package: ru.andersen.listImpl 
 */
@@ -30,11 +30,11 @@ public class MyClass implements Comparable<MyClass>{
 
     @Override
     public int compareTo(MyClass user) {
-        int comparation = name.compareTo(user.name);
-        if (comparation == 0){
-            comparation = Integer.compare(age, user.age);
+        int comp = name.compareTo(user.name);
+        if (comp == 0){
+            comp = Integer.compare(age, user.age);
         }
-        return comparation;
+        return comp;
     }
 
     public int compareByName(MyClass user){
