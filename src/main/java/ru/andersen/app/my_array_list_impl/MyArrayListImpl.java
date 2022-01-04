@@ -1,4 +1,4 @@
-package ru.andersen.app.myArrayListImpl;
+package ru.andersen.app.my_array_list_impl;
 /*
 01.01.2022: Alexey created this file inside the package: ru.andersen.listImpl
 */
