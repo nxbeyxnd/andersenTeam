@@ -1,5 +1,9 @@
+#Папки
 .idea/
 target/
-out/
-logs/
-andersen.iml
+
+#Файлы и расширения
+.iml
+
+#Для маководов:
+.DS_Store
