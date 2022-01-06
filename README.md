@@ -44,7 +44,7 @@
 За финальный результат (master ветку) отвечает капитан.
 
 * [X] void add(E e);
-* [ ] void add(int index, E e);
+* [X] void add(int index, E e);
 * [X] E get(int index);
 * [X] boolean contains(E e);
 * [ ] void set(int index, E e);

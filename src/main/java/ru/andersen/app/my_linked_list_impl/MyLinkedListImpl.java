@@ -8,7 +8,6 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private Node<E> first;
     private Node<E> last;
 
-
     @Override
     public void add(E e) {
         addLast(e);
@@ -16,22 +15,20 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void add(int index, E e) {
-        Node<E> current = first;
-        if (index == 0) addFirst(e);
-        else if(index == size) addLast(e);
-        else {
-            for (int i = 0; i < size; i++) {
-                if (i == index) {
-                    Node<E> temp = current.prev;
-                    Node<E> tempNext = current;
-                    current = new Node<>(tempNext, e, temp);
-                    temp.next = current;
-                    tempNext.prev = current;
-                }
-                current = current.next;
-            }
-            size++;
+        checkIndex(index);
+        if (index == size) addLast(e);
+        else addBefore(e, getNodeByIndex(index));
+    }
+
+    private void addBefore(E e, Node<E> current) {
+        Node<E> before = current.prev;
+        Node<E> newNode = new Node<>(current, e, before);
+        if (before == null) {
+            first = newNode;
+        } else {
+            before.next = newNode;
         }
+        size++;
     }
 
     @Override
@@ -114,6 +111,27 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             this.next = next;
             this.prev = prev;
         }
+    }
+
+    private Node<E> getNodeByIndex(int index) {
+        Node<E> current;
+        if (index < (size / 2)) {
+            current = first;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+        } else {
+            current = last;
+            for (int i = size - 1; i > index; i--) {
+                current = current.prev;
+            }
+        }
+        return current;
+    }
+
+    private void checkIndex(int index) {
+        if (index > size || index < 0)
+            throw new IndexOutOfBoundsException(String.format("Index %d out of range of list size %d", index, size));
     }
 
     @Override
