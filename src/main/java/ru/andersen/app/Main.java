@@ -4,8 +4,14 @@ package ru.andersen.app;
 */
 
 
-public class Main {
-    public static void main(String[] args) {
+import ru.andersen.app.my_linked_list_impl.MyLinkedListImpl;
 
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        MyLinkedListImpl list = new MyLinkedListImpl();
+        list.addFirst("test");
+        list.addFirst("test1");
+        list.addFirst("test5");
+        System.out.println(list);
     }
 }
