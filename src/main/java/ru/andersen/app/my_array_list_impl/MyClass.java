@@ -47,9 +47,7 @@ public class MyClass implements Comparable<MyClass>{
 
     @Override
     public String toString() {
-        return "MyClass{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "name:'" + name + '\'' +
+                ", age:" + age;
     }
 }
