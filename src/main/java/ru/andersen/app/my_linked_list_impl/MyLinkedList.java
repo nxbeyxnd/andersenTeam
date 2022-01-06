@@ -10,7 +10,7 @@ public interface MyLinkedList<T> {
     //boolean contains(T t);
     //void set(int index, T t);
     //void remove(int index);
-    void remove(T t);
+    void remove(E t);
     int size();
     void sort();
 }
