@@ -16,7 +16,22 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void add(int index, E e) {
-
+        Node<E> current = first;
+        if (index == 0) addFirst(e);
+        else if(index == size) addLast(e);
+        else {
+            for (int i = 0; i < size; i++) {
+                if (i == index) {
+                    Node<E> temp = current.prev;
+                    Node<E> tempNext = current;
+                    current = new Node<>(tempNext, e, temp);
+                    temp.next = current;
+                    tempNext.prev = current;
+                }
+                current = current.next;
+            }
+            size++;
+        }
     }
 
     @Override
@@ -42,7 +57,6 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             last = new Node<E>(null, e, temp);
             temp.next = last;
         }
-
         size++;
     }
 
