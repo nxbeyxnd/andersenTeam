@@ -48,11 +48,20 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        Node<E> temp = first;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.value;
     }
 
     @Override
     public boolean contains(E e) {
+        Node<E> current = first;
+        for (int i = 0; i < size; i++) {
+            if (current.value == e) return true;
+            current = current.next;
+        }
         return false;
     }
 
@@ -81,11 +90,6 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     }
 
-    private Boolean findIndex(int index){
-        return Boolean.TRUE;
-    }
-
-
     private static class Node<E> {
         E value;
         Node<E> next;
@@ -107,6 +111,6 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             if (current.next != null) res += ", ";
             current = current.next;
         }
-        return res;
+        return "[" + res + "]";
     }
 }
