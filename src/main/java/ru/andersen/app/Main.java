@@ -13,11 +13,20 @@ public class Main {
         MyClass second = new MyClass("Akai",87);
         MyClass third = new MyClass("Don",23);
         MyClass four = new MyClass("Вставка",43);
+
         MyLinkedListImpl list = new MyLinkedListImpl();
+
         list.add(one);
         list.add(second);
         list.add(third);
+        list.size();
+        list.print();
         list.remove(second);
+        list.size();
+        list.print();
+
+
+
 
     }
 }
