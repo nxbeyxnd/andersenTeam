@@ -34,9 +34,15 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void addLast(E e) {
-        Node<E> temp = last;
-        last = new Node<E>(null, e, temp);
-        temp.next = last;
+        if (size == 0) {
+            first = new Node<E>(null, e, null);
+            last = first;
+        } else {
+            Node<E> temp = last;
+            last = new Node<E>(null, e, temp);
+            temp.next = last;
+        }
+
         size++;
     }
 
@@ -78,6 +84,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private Boolean findIndex(int index){
         return Boolean.TRUE;
     }
+
 
     private static class Node<E> {
         E value;
