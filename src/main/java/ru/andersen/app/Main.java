@@ -4,8 +4,10 @@ package ru.andersen.app;
 */
 
 
+import ru.andersen.app.my_linked_list_impl.MyLinkedListImpl;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
     }
 }

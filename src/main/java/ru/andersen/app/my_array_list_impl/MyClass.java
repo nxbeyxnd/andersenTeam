@@ -3,6 +3,8 @@ package ru.andersen.app.my_array_list_impl;
 02.01.2022: Alexey created this file inside the package: ru.andersen.listImpl 
 */
 
+import java.util.Objects;
+
 public class MyClass implements Comparable<MyClass>{
     private String name;
     private int age;
@@ -43,6 +45,19 @@ public class MyClass implements Comparable<MyClass>{
 
     public int compareByAge(MyClass user){
         return Integer.compare(this.age, user.age);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyClass myClass = (MyClass) o;
+        return age == myClass.age && Objects.equals(name, myClass.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     @Override
