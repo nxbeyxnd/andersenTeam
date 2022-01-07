@@ -3,6 +3,8 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
+import java.util.Comparator;
+
 public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private int size = 0;
     private Node<E> first;
@@ -46,15 +48,16 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void addLast(E e) {
-        if (size == 0) {
-            first = new Node<E>(null, e, null);
-            last = first;
+        Node<E> last = this.last;
+        Node<E> newNode = new Node<E>(null, e, last);
+        this.last = newNode;
+        if (last == null) {
+            first = newNode;
         } else {
-            Node<E> temp = last;
-            last = new Node<E>(null, e, temp);
-            temp.next = last;
+//            first.next = last;
+            last.next = newNode;
         }
-        size++;
+        this.size++;
     }
 
     @Override
@@ -97,8 +100,20 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator<E> c) {
+        for (int k = size; k != 0; k--) {
+            for (int i = 0, j = 1; j < size; i++, j++) {
+                if (c.compare(getNodeByIndex(i).value, getNodeByIndex(j).value) > 0) {
+                    swap(getNodeByIndex(i), getNodeByIndex(j));
+                }
+            }
+        }
+    }
 
+    private void swap(Node<E> n1, Node<E> n2) {
+        E temp = n1.value;
+        n1.value = n2.value;
+        n2.value = temp;
     }
 
     private static class Node<E> {
@@ -138,7 +153,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public String toString() {
         String res = "";
         Node<E> current = first;
-        for (int i = 0; i < size; i++) {
+        while (current != null) {
             res += current.value;
             if (current.next != null) res += ", ";
             current = current.next;

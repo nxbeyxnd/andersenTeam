@@ -3,6 +3,8 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
+import java.util.Comparator;
+
 public interface MyLinkedList<E> {
     void add(E e);
     void add(int index, E e);
@@ -14,5 +16,5 @@ public interface MyLinkedList<E> {
     void remove(int index);
     void remove(E e);
     int size();
-    void sort();
+    void sort(Comparator<E> c);
 }
