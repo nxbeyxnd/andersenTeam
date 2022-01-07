@@ -3,6 +3,8 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
+import java.util.LinkedList;
+
 public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private int size = 0;
     private Node<E> first;
@@ -83,22 +85,36 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void remove(int index) {
-
+        checkIndex(index);
+        Node temp = getNodeByIndex(index);
+        if (index == 0) {
+            temp.next.prev = null;
+            first = temp.next;
+            size--;
+        } else if (index == size - 1) {
+            temp.prev.next = null;
+            last = temp.prev;
+            size--;
+        } else {
+            temp.prev.next = temp.next;
+            temp.next.prev = temp.prev;
+            size--;
+        }
     }
+
 
     @Override
     public void remove(E e) {
-        LinkedListNode tmp = first;
-        while(tmp != null)
-            if(tmp.value.equals(o)){
-                tmp.prev.next = tmp.next;
-                tmp.next.prev = tmp.prev;
+        Node temp = first;
+        while (temp != null)
+            if (temp.value.equals(e)) {
+                temp.prev.next = temp.next;
+                temp.next.prev = temp.prev;
                 size--;
                 break;
-            }
-            else tmp = tmp.next;
+            } else temp = temp.next;
     }
-    }
+
 
     @Override
     public int size() {
