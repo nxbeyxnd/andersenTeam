@@ -78,7 +78,4 @@ public class MyArrayListTests {
         list.contains(third);
         Assertions.assertEquals(true,true);
     }
-
-
-
-
+}
