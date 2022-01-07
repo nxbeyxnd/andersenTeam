@@ -47,8 +47,8 @@
 * [X] void add(int index, E e);
 * [X] E get(int index);
 * [X] boolean contains(E e);
-* [ ] void set(int index, E e);
-* [ ] void remove(int index);
+* [X] void set(int index, E e);
+* [X] void remove(int index);
 * [ ] void remove(E e);
 * [X] int size();
 * [X] void sort(); 
