@@ -80,10 +80,6 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void remove(int index) {
-        Node<E> tmp = first;
-
-        getNodeByIndex(index).next.prev = tmp.next;
-
 
     }
 
@@ -135,9 +131,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             this.next = next;
             this.prev = prev;
         }
-
     }
-    public Node<E> getNodeByIndex(int index) {
+
+    private Node<E> getNodeByIndex(int index) {
         Node<E> current;
         if (index < (size / 2)) {
             current = first;
