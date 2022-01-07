@@ -12,6 +12,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Метод дабавляет значение в конец
+     *
      * @param e значение для добавления
      */
     @Override
@@ -21,8 +22,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Метод добавляет по индексу значение
+     *
      * @param index индекс куда добавить
-     * @param e значение для добалвения
+     * @param e     значение для добалвения
      */
     @Override
     public void add(int index, E e) {
@@ -33,7 +35,8 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Локальный метод добавления значений
-     * @param e Значение для добавления
+     *
+     * @param e       Значение для добавления
      * @param current нода, с которой будет вестись работа
      */
     private void addBefore(E e, Node<E> current) {
@@ -49,6 +52,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Добавление в начало списка
+     *
      * @param e Значение для добавления
      */
     @Override
@@ -65,6 +69,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Добавить в конец списка
+     *
      * @param e Значение для добавления
      */
     @Override
@@ -82,6 +87,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Получение значения по индексу
+     *
      * @param index позиция элемента
      * @return Значение value в ноде
      */
@@ -92,6 +98,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Проверка на существование элемента в списке
+     *
      * @param e Значение дял поиска
      * @return true - в случае совпадения, false - в случае отсутствия элемента в списке
      */
@@ -107,8 +114,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Замена значения по индексу
+     *
      * @param index позиция для замены
-     * @param e Значение для добавления
+     * @param e     Значение для добавления
      */
     @Override
     public void set(int index, E e) {
@@ -117,13 +125,16 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Удаление по индексу
+     *
      * @param index позиция для удаления
      */
     @Override
     public void remove(int index) {
         checkIndex(index);
         Node temp = getNodeByIndex(index);
-        if (index == 0) {
+        if (size == 0) {
+            first = null;
+        } else if (index == 0) {
             temp.next.prev = null;
             first = temp.next;
         } else if (index == size - 1) {
@@ -138,6 +149,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Удаление по совпадению
+     *
      * @param e значения для удаления
      */
     @Override
@@ -152,10 +164,12 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             tmp.prev.next = tmp.next;
             tmp.prev = null;
         }
+        size--;
     }
 
     /**
      * Вывод размера листа
+     *
      * @return int значение размера листа
      */
     @Override
@@ -165,6 +179,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Сортировка пузырьком
+     *
      * @param c Comprator<E> объекта
      */
     @Override
@@ -180,6 +195,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Локальный метод замены данных
+     *
      * @param n1 1 нода
      * @param n2 2 нода
      */
@@ -191,6 +207,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Класс ноды
+     *
      * @param <E> тип данных
      */
     private static class Node<E> {
@@ -207,6 +224,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Локальный метод для получения ноды по индексу
+     *
      * @param index индекс ноды
      * @return нода по индексу
      */
@@ -228,6 +246,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Проверка на валидность индекса
+     *
      * @param index исключение если индекс больше размера или меньше 0
      */
     private void checkIndex(int index) {
@@ -237,6 +256,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     /**
      * Выдача листа в String формате
+     *
      * @return String значение
      */
     @Override
