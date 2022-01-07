@@ -80,7 +80,19 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void remove(int index) {
-
+        checkIndex(index);
+        Node temp = getNodeByIndex(index);
+        if (index == 0) {
+            temp.next.prev = null;
+            first = temp.next;
+        } else if (index == size - 1) {
+            temp.prev.next = null;
+            last = temp.prev;
+        } else {
+            temp.prev.next = temp.next;
+            temp.next.prev = temp.prev;
+        }
+        size--;
     }
 
     @Override
