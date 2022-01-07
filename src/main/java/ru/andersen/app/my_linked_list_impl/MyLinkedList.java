@@ -5,6 +5,7 @@ package ru.andersen.app.my_linked_list_impl;
 
 import java.util.Comparator;
 
+
 public interface MyLinkedList<E> {
     void add(E e);
     void add(int index, E e);
