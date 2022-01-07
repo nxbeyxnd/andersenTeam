@@ -3,7 +3,9 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
-import java.util.LinkedList;
+
+import java.util.Comparator;
+
 
 public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private int size = 0;
@@ -24,7 +26,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     private void addBefore(E e, Node<E> current) {
         Node<E> before = current.prev;
-        Node<E> newNode = new Node<>(current, e, before);
+        Node<E> newNode = new Node<>(before, e, current);
         if (before == null) {
             first = newNode;
         } else {
@@ -37,35 +39,32 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public void addFirst(E e) {
         if (size == 0) {
             first = new Node<E>(null, e, null);
-            last = first;
+
         } else {
             Node<E> temp = first;
-            first = new Node<E>(temp, e, null);
+            first = new Node<E>(null, e, temp);
             temp.prev = first;
         }
-        size++;
+        this.size++;
+
     }
 
     @Override
     public void addLast(E e) {
-        if (size == 0) {
-            first = new Node<E>(null, e, null);
-            last = first;
+        Node<E> last = this.last;
+        Node<E> newNode = new Node<E>(last, e, null);
+        this.last = newNode;
+        if (last == null) {
+            first = newNode;
         } else {
-            Node<E> temp = last;
-            last = new Node<E>(null, e, temp);
-            temp.next = last;
+            last.next = newNode;
         }
-        size++;
+        this.size++;
     }
 
     @Override
     public E get(int index) {
-        Node<E> temp = first;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp.value;
+        return getNodeByIndex(index).value;
     }
 
     @Override
@@ -98,31 +97,33 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             temp.next.prev = temp.prev;
         }
         size--;
-
     }
-
 
     @Override
     public void remove(E e) {
-        Node temp = first;
-        while (temp != null)
-            if (temp.value.equals(e)) {
-                temp.prev.next = temp.next;
-                temp.next.prev = temp.prev;
-                size--;
-                break;
-            } else temp = temp.next;
-    }
 
+    }
 
     @Override
     public int size() {
-        return size;
+        return this.size;
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator<E> c) {
+        for (int k = size; k != 0; k--) {
+            for (int i = 0, j = 1; j < size; i++, j++) {
+                if (c.compare(getNodeByIndex(i).value, getNodeByIndex(j).value) > 0) {
+                    swap(getNodeByIndex(i), getNodeByIndex(j));
+                }
+            }
+        }
+    }
 
+    private void swap(Node<E> n1, Node<E> n2) {
+        E temp = n1.value;
+        n1.value = n2.value;
+        n2.value = temp;
     }
 
     private static class Node<E> {
@@ -130,7 +131,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
         Node<E> next;
         Node<E> prev;
 
-        Node(Node<E> next, E value, Node<E> prev) {
+        Node(Node<E> prev, E value, Node<E> next) {
             this.value = value;
             this.next = next;
             this.prev = prev;
@@ -162,7 +163,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public String toString() {
         String res = "";
         Node<E> current = first;
-        for (int i = 0; i < size; i++) {
+        while (current != null) {
             res += current.value;
             if (current.next != null) res += ", ";
             current = current.next;
