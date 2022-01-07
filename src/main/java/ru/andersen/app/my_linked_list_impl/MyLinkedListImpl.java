@@ -70,7 +70,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public boolean contains(E e) {
         Node<E> current = first;
         for (int i = 0; i < size; i++) {
-            if (current.value == e) return true;
+            if (current.value.equals(e)) return true;
             current = current.next;
         }
         return false;
@@ -78,7 +78,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void set(int index, E e) {
-
+        getNodeByIndex(index).value = e;
     }
 
     @Override
@@ -88,7 +88,16 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void remove(E e) {
-
+        LinkedListNode tmp = first;
+        while(tmp != null)
+            if(tmp.value.equals(o)){
+                tmp.prev.next = tmp.next;
+                tmp.next.prev = tmp.prev;
+                size--;
+                break;
+            }
+            else tmp = tmp.next;
+    }
     }
 
     @Override
