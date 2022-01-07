@@ -24,7 +24,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     private void addBefore(E e, Node<E> current) {
         Node<E> before = current.prev;
-        Node<E> newNode = new Node<>(current, e, before);
+        Node<E> newNode = new Node<>(before, e, current);
         if (before == null) {
             first = newNode;
         } else {
@@ -37,24 +37,22 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public void addFirst(E e) {
         if (size == 0) {
             first = new Node<E>(null, e, null);
-            last = first;
         } else {
             Node<E> temp = first;
-            first = new Node<E>(temp, e, null);
+            first = new Node<E>(null, e, temp);
             temp.prev = first;
         }
-        size++;
+        this.size++;
     }
 
     @Override
     public void addLast(E e) {
         Node<E> last = this.last;
-        Node<E> newNode = new Node<E>(null, e, last);
+        Node<E> newNode = new Node<E>(last, e, null);
         this.last = newNode;
         if (last == null) {
             first = newNode;
         } else {
-//            first.next = last;
             last.next = newNode;
         }
         this.size++;
@@ -62,18 +60,14 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public E get(int index) {
-        Node<E> temp = first;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp.value;
+        return getNodeByIndex(index).value;
     }
 
     @Override
     public boolean contains(E e) {
         Node<E> current = first;
         for (int i = 0; i < size; i++) {
-            if (current.value == e) return true;
+            if (current.value.equals(e)) return true;
             current = current.next;
         }
         return false;
@@ -81,7 +75,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public void set(int index, E e) {
-
+        getNodeByIndex(index).value = e;
     }
 
     @Override
@@ -96,7 +90,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
 
     @Override
     public int size() {
-        return size;
+        return this.size;
     }
 
     @Override
@@ -121,7 +115,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
         Node<E> next;
         Node<E> prev;
 
-        Node(Node<E> next, E value, Node<E> prev) {
+        Node(Node<E> prev, E value, Node<E> next) {
             this.value = value;
             this.next = next;
             this.prev = prev;
