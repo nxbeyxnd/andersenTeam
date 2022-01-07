@@ -57,7 +57,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
         }
         this.size++;
     }
-
+   
     @Override
     public E get(int index) {
         return getNodeByIndex(index).value;
@@ -96,9 +96,20 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     }
 
     @Override
-    public void remove(E e) {
-
+    public void remove(Object o) {
+        Node tmp = first;
+        while (tmp != null && tmp.value != o) {
+            tmp=tmp.next;
+        }
+            if (tmp.prev == null) {
+                first = tmp.next;
+            } else {
+                tmp.prev.next = tmp.next;
+                tmp.prev = null;
+            }
     }
+
+
 
     @Override
     public int size() {
