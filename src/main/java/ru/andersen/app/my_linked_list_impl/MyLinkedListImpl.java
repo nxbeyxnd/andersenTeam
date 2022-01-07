@@ -3,9 +3,7 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
-
 import java.util.Comparator;
-
 
 public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private int size = 0;
@@ -39,14 +37,12 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public void addFirst(E e) {
         if (size == 0) {
             first = new Node<E>(null, e, null);
-
         } else {
             Node<E> temp = first;
             first = new Node<E>(null, e, temp);
             temp.prev = first;
         }
         this.size++;
-
     }
 
     @Override
