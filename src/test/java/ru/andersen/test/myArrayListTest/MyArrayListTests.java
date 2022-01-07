@@ -3,15 +3,16 @@ package ru.andersen.test.myArrayListTest;/*
 */
 
 import org.junit.jupiter.api.Assertions;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+
+import ru.andersen.app.my_array_list_impl.MyArrayList;
 import ru.andersen.app.my_array_list_impl.MyArrayListImpl;
 import ru.andersen.app.my_array_list_impl.MyClass;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+
 
 public class MyArrayListTests {
 
@@ -146,5 +147,4 @@ public class MyArrayListTests {
 
         Assertions.assertEquals(5, i);
     }
-
 }
