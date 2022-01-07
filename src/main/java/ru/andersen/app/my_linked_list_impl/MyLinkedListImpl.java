@@ -3,46 +3,52 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
-import org.w3c.dom.Node;
-import ru.andersen.app.my_array_list_impl.MyClass;
-
-import java.security.PublicKey;
 import java.util.Comparator;
 
-public class MyLinkedListImpl<T> implements MyLinkedList, Comparator<MyClass>{
-
-    @Override
-    public int compare(MyClass o1, MyClass o2) {
-        return o1.compareTo(o2);
-    }
-
-    /*
-     *Вложенная нода с помощью которой создаются новые элементы
-     */
-    private static class LinkedListNode<T> {
-        public T value;
-        LinkedListNode<T> next;
-        LinkedListNode<T> prev;
-
-        public LinkedListNode(LinkedListNode prev,T element, LinkedListNode next) {
-            this.value = element;
-            this.next = next;
-            this.prev = prev;
-        }
-    }
-
+public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     private int size = 0;
-    private LinkedListNode first;
-    private LinkedListNode last;
+    private Node<E> first;
+    private Node<E> last;
 
-    /*
-     * Реализация методов интерфейса MyLinkedList.
-     *
-     */
     @Override
-    public void add(Object o) {
-        LinkedListNode last = this.last;
-        LinkedListNode newNode = new LinkedListNode(last,o,null);
+    public void add(E e) {
+        addLast(e);
+    }
+
+    @Override
+    public void add(int index, E e) {
+        checkIndex(index);
+        if (index == size) addLast(e);
+        else addBefore(e, getNodeByIndex(index));
+    }
+
+    private void addBefore(E e, Node<E> current) {
+        Node<E> before = current.prev;
+        Node<E> newNode = new Node<>(before, e, current);
+        if (before == null) {
+            first = newNode;
+        } else {
+            before.next = newNode;
+        }
+        size++;
+    }
+
+    @Override
+    public void addFirst(E e) {
+        if (size == 0) {
+            first = new Node<E>(null, e, null);
+        } else {
+            Node<E> temp = first;
+            first = new Node<E>(null, e, temp);
+            temp.prev = first;
+        }
+        this.size++;
+    }
+
+    @Override
+    public void addLast(E e) {
+        Node<E> last = this.last;
+        Node<E> newNode = new Node<E>(last, e, null);
         this.last = newNode;
         if (last == null) {
             first = newNode;
@@ -51,101 +57,93 @@ public class MyLinkedListImpl<T> implements MyLinkedList, Comparator<MyClass>{
         }
         this.size++;
     }
-/*
-    public<E> LinkedListNode node(int index){
-
-        if (index < (size >> 1)) {
-            LinkedListNode<T> returnedNode = first;
-            for (int i = 0; i < index; i++)
-                returnedNode = returnedNode.next;
-            return returnedNode;
-        } else {
-            LinkedListNode<E> returnedNode = last;
-            for (int i = size - 1; i > index; i--)
-                returnedNode = returnedNode.prev;
-            return returnedNode;
-        }
+   
+    @Override
+    public E get(int index) {
+        return getNodeByIndex(index).value;
     }
-    public void linkLast(T t){
-        final LinkedListNode<T> l = this.last;
-        final LinkedListNode<T> newNode = new LinkedListNode<T>(l, t,null);
-        last = newNode;
-        if (last == null) {
-            first = newNode;
-            System.out.println("if last==null" + first.toString());
-        }
-        else {
-            last.next = newNode;
-            System.out.println("if last !null" + last.toString());
-        }
-        this.size++;
-    }
-    public void linkBefore(T t, LinkedListNode listNode) {
-        final LinkedListNode<T> pred = listNode.prev;
-        final LinkedListNode<T> newNode = new LinkedListNode<T>(pred, t, listNode);
-        listNode.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
-        size++;
-    }
-
-    public void add(int index, T t) {
-        if (index == size)
-            linkLast(t);
-        else
-            linkBefore(t, node(index));
-        System.out.println("Элемента " + t + " добавлен");
-    }
-*/
 
     @Override
-    public void remove(Object o) {
-       LinkedListNode tmp = first;
-       while(tmp != null)
-       if(tmp.value.equals(o)){
-           tmp.prev.next = tmp.next;
-           tmp.next.prev = tmp.prev;
-           size--;
-           break;
-       }
-       else tmp = tmp.next;
+    public boolean contains(E e) {
+        Node<E> current = first;
+        for (int i = 0; i < size; i++) {
+            if (current.value.equals(e)) return true;
+            current = current.next;
+        }
+        return false;
+    }
+
+    @Override
+    public void set(int index, E e) {
+        getNodeByIndex(index).value = e;
+    }
+
     }
 
     @Override
     public int size() {
-        System.out.println(this.size);
         return this.size;
     }
 
-    public void print() {
-        LinkedListNode tmp = first;
-        if(tmp != null) {
-            while (tmp != null) {
-                System.out.println(tmp.value.toString());
-                tmp = tmp.next;
-            }
-        }
-        System.out.println();
-    }
-
     @Override
-    public void sort(){
-       if (size > 1) {
-            for (int i = 0; i < size; i++ ) {
-                LinkedListNode currentNode = first;
-                LinkedListNode next = first.next;
-                for (int j = 0; j < size - 1; j++) {
-                    if (compare((MyClass)currentNode.value, (MyClass)next.value)>0) {
-                        LinkedListNode temp = currentNode;
-                        currentNode = next;
-                        next = temp;
-                    }
-                    currentNode = next;
-                    next = next.next;
+    public void sort(Comparator<E> c) {
+        for (int k = size; k != 0; k--) {
+            for (int i = 0, j = 1; j < size; i++, j++) {
+                if (c.compare(getNodeByIndex(i).value, getNodeByIndex(j).value) > 0) {
+                    swap(getNodeByIndex(i), getNodeByIndex(j));
                 }
             }
         }
+    }
+
+    private void swap(Node<E> n1, Node<E> n2) {
+        E temp = n1.value;
+        n1.value = n2.value;
+        n2.value = temp;
+    }
+
+    private static class Node<E> {
+        E value;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E value, Node<E> next) {
+            this.value = value;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+
+    private Node<E> getNodeByIndex(int index) {
+        Node<E> current;
+        if (index < (size / 2)) {
+            current = first;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+        } else {
+            current = last;
+            for (int i = size - 1; i > index; i--) {
+                current = current.prev;
+            }
+        }
+        return current;
+    }
+
+    private void checkIndex(int index) {
+        if (index > size || index < 0)
+            throw new IndexOutOfBoundsException(String.format("Index %d out of range of list size %d", index, size));
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        Node<E> current = first;
+        while (current != null) {
+            res += current.value;
+            if (current.next != null) res += ", ";
+            current = current.next;
+        }
+        return "[" + res + "]";
     }
 }
