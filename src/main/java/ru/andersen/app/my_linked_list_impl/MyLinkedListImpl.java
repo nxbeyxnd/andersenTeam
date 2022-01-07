@@ -123,7 +123,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     public void remove(int index) {
         checkIndex(index);
         Node temp = getNodeByIndex(index);
-        if (index == 0) {
+        if (size == 1){
+            first = null;
+        }else if (index == 0) {
             temp.next.prev = null;
             first = temp.next;
         } else if (index == size - 1) {
@@ -152,6 +154,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             tmp.prev.next = tmp.next;
             tmp.prev = null;
         }
+        size--;
     }
 
     /**
