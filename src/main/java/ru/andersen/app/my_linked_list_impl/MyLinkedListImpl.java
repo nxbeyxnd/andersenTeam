@@ -90,16 +90,15 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
         if (index == 0) {
             temp.next.prev = null;
             first = temp.next;
-            size--;
         } else if (index == size - 1) {
             temp.prev.next = null;
             last = temp.prev;
-            size--;
         } else {
             temp.prev.next = temp.next;
             temp.next.prev = temp.prev;
-            size--;
         }
+        size--;
+
     }
 
 
