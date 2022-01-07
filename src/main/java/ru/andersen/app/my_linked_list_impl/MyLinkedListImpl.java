@@ -78,7 +78,24 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
         getNodeByIndex(index).value = e;
     }
 
+    @Override
+    public void remove(int index) {
+
     }
+
+    @Override
+    public void remove(Object o) {
+        Node<E> tmp = first;
+        while(tmp != null)
+            if(tmp.value.equals(o)){
+                tmp.prev.next = tmp.next;
+                tmp.next.prev = tmp.prev;
+                size--;
+                break;
+            }
+            else tmp = tmp.next;
+    }
+
 
     @Override
     public int size() {
@@ -112,9 +129,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             this.next = next;
             this.prev = prev;
         }
-    }
 
-    private Node<E> getNodeByIndex(int index) {
+    }
+    public Node<E> getNodeByIndex(int index) {
         Node<E> current;
         if (index < (size / 2)) {
             current = first;
