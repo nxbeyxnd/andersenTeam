@@ -2,7 +2,7 @@
 
 Задания:
 * [X] Задание 1 Реализация ArrayList
-* [ ] Задание 2 Реализация LinkedList
+* [X] Задание 2 Реализация LinkedList
 * [ ] Задание 3 
 * [ ] Задание 4 
 * [ ] Задание 5 
@@ -52,7 +52,7 @@
 * [X] boolean contains(E e);
 * [X] void set(int index, E e);
 * [X] void remove(int index);
-* [ ] void remove(E e);
+* [X] void remove(E e);
 * [X] int size();
 * [X] void sort(); 
 
