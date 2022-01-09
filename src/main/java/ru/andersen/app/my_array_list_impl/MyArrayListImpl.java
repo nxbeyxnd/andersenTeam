@@ -137,6 +137,7 @@ public class MyArrayListImpl<E> implements MyArrayList<E> {
 
     /**
      * Сортировка массива по компаратору
+     *
      * @param c Comparator<E> объекта сравнения
      */
     @Override
