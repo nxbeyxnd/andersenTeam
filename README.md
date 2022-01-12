@@ -2,8 +2,8 @@
 
 Задания:
 * [X] Задание 1 Реализация ArrayList
-* [ ] Задание 2 Реализация LinkedList
-* [ ] Задание 3 
+* [X] Задание 2 Реализация LinkedList
+* [ ] Задание 3 Изучение паттернов проектирования
 * [ ] Задание 4 
 * [ ] Задание 5 
 * [ ] Задание 6 
@@ -52,7 +52,7 @@
 * [X] boolean contains(E e);
 * [X] void set(int index, E e);
 * [X] void remove(int index);
-* [ ] void remove(E e);
+* [X] void remove(E e);
 * [X] int size();
 * [X] void sort(); 
 
