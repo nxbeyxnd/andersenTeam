@@ -8,7 +8,9 @@ import ru.andersen.app.user_patterns.anton.fabric.Bank;
 import ru.andersen.app.user_patterns.anton.fabric.Money;
 
 public class Main {
+
     public static void main(String[] args) {
+
     }
 }
 
