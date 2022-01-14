@@ -2,40 +2,26 @@ package ru.andersen.app.patterns.creational.prototype;
 
 public class Car implements Copyable {
     private String name;
-
-    public Car(String name, double engineVolume, int sets) {
-        this.name = name;
-        this.engineVolume = engineVolume;
-        this.sets = sets;
-    }
-
-    public String getName() {
-        return name;
-    }
+    private double engineVolume;
+    private int sets;
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getEngineVolume() {
-        return engineVolume;
     }
 
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume;
     }
 
-    public int getSets() {
-        return sets;
-    }
-
     public void setSets(int sets) {
         this.sets = sets;
     }
 
-    private double engineVolume;
-    private int sets;
-
+    public Car(String name, double engineVolume, int sets) {
+        this.name = name;
+        this.engineVolume = engineVolume;
+        this.sets = sets;
+    }
 
     @Override
     public Object copy() {
