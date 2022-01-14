@@ -32,7 +32,6 @@ public class WeaponCli {
         EnchantmentRarityFactory enchantmentRarity = enchantRarityByName("mythic");
         Rarity newRarity = enchantmentRarity.setRarity();
         Weapon newWeapon = craftWeapon.createWeapon(newRarity);
-
         System.out.println(newWeapon);
     }
 
