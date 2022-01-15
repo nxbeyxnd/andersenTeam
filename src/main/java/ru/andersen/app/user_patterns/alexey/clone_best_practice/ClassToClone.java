@@ -31,6 +31,11 @@ public class ClassToClone implements Cloneable {
         this.test = clone.test;
     }
 
+    public static ClassToClone newInstance(ClassToClone clone){
+        ClassToClone classToClone = new ClassToClone(clone);
+        return classToClone;
+    }
+
     /**
      * Minuses of clone() method:
      * 1. Constructor not initialized, for example - Date() which must init in constructor when created.
