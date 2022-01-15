@@ -52,7 +52,9 @@ public class ClassToClone implements Cloneable {
 //        return (ClassToClone) super.clone();
         try {
             ClassToClone result = (ClassToClone) super.clone();
+
 //            result.test = test; // <- Cannot assign a value to final variable 'test' because var already initialized;
+
             return result;
         } catch (CloneNotSupportedException e){
             throw new CloneNotSupportedException();
