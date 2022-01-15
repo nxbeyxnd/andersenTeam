@@ -31,6 +31,11 @@ public class ClassToClone implements Cloneable {
         this.test = clone.test;
     }
 
+    public static ClassToClone newInstance(ClassToClone clone){
+        ClassToClone classToClone = new ClassToClone(clone);
+        return classToClone;
+    }
+
     /**
      * Minuses of clone() method:
      * 1. Constructor not initialized, for example - Date() which must init in constructor when created.
@@ -47,7 +52,9 @@ public class ClassToClone implements Cloneable {
 //        return (ClassToClone) super.clone();
         try {
             ClassToClone result = (ClassToClone) super.clone();
-            //result.test = test; // <- Cannot assign a value to final variable 'test' because var already initialized;
+
+//            result.test = test; // <- Cannot assign a value to final variable 'test' because var already initialized;
+
             return result;
         } catch (CloneNotSupportedException e){
             throw new CloneNotSupportedException();
