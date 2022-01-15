@@ -28,7 +28,7 @@ public class ClassToClone implements Cloneable {
      */
     public ClassToClone(ClassToClone clone) {
         this.id = clone.id;
-        this.test = clone.test;
+        this.test = clone.test.clone();
     }
 
     public static ClassToClone newInstance(ClassToClone clone){
