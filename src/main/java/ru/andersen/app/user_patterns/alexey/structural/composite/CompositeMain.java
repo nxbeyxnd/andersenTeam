@@ -9,13 +9,13 @@ public class CompositeMain {
     public static void main(String[] args) {
         Director director = new Director(40, "Antonina");
 
-        StandartPeople teacher = new Teacher(20, 10, "Tamara");
+        StandardPeople teacher = new Teacher(20, 10, "Tamara");
 
-        StandartPeople people = new ClassMate(1,10, "test");
-        StandartPeople people1 = new ClassMate(1,10, "test");
-        StandartPeople people2 = new ClassMate(1,10, "test");
-        StandartPeople people3 = new ClassMate(1,10, "test");
-        StandartPeople people4 = new ClassMate(1,10, "test");
+        StandardPeople people = new ClassMate(1,10, "test");
+        StandardPeople people1 = new ClassMate(1,10, "test");
+        StandardPeople people2 = new ClassMate(1,10, "test");
+        StandardPeople people3 = new ClassMate(1,10, "test");
+        StandardPeople people4 = new ClassMate(1,10, "test");
 
         teacher.addToClass(people);
         teacher.addToClass(people1);

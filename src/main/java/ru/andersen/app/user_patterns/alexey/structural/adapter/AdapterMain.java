@@ -3,13 +3,16 @@ package ru.andersen.app.user_patterns.alexey.structural.adapter;
 15.01.2022: Alexey created this file inside the package: ru.andersen.app.user_patterns.alexey.structural.adapter 
 */
 
+import ru.andersen.app.user_patterns.alexey.structural.adapter.model.CarToTruckAdapter;
+import ru.andersen.app.user_patterns.alexey.structural.adapter.model.Truck;
+
 public class AdapterMain {
     public static void main(String[] args) {
-        Train train = new CarToTrainAdapter();
+        Truck truck = new CarToTruckAdapter();
 
-        train.closeDoor();
-        train.openDoor();
-        train.drive();
-        train.stop();
+        truck.closeDoor();
+        truck.openDoor();
+        truck.drive();
+        truck.stop();
     }
 }

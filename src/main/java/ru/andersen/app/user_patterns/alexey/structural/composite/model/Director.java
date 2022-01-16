@@ -6,7 +6,7 @@ package ru.andersen.app.user_patterns.alexey.structural.composite.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Director extends StandartPeople{
+public class Director extends StandardPeople {
     private int aqe;
     private String name;
     List<People> teachers;
