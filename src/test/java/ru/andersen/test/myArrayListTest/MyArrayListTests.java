@@ -11,17 +11,17 @@ import ru.andersen.app.my_array_list_impl.MyClass;
 import java.util.Comparator;
 
 
-public class MyArrayListTests {
+class MyArrayListTests {
 
 
-    MyArrayListImpl list = new MyArrayListImpl();
+    MyArrayListImpl<MyClass> list = new MyArrayListImpl();
     MyClass one = new MyClass("Suzuki", 54);
     MyClass two = new MyClass("Ural", 23);
     MyClass third = new MyClass("KAMA", 65);
 
 
     @Test
-    public void addNextElement() {
+    void addNextElement() {
         list.add(one);
         list.add(two);
         list.add(third);
@@ -29,7 +29,7 @@ public class MyArrayListTests {
     }
 
     @Test
-    public void addElementByIndex() {
+    void addElementByIndex() {
         list.add(two);
         list.add(third);
         list.add(1, one);
@@ -37,7 +37,7 @@ public class MyArrayListTests {
     }
 
     @Test
-    public void setElementByIndex() {
+    void setElementByIndex() {
         list.add(one);
         list.add(two);
         list.set(1, third);
@@ -45,7 +45,7 @@ public class MyArrayListTests {
     }
 
     @Test
-    public void sort() {
+    void sort() {
         list.add(one);
         list.add(two);
         list.add(third);
@@ -55,7 +55,7 @@ public class MyArrayListTests {
                 return o1.compareTo(o2);
             }
         });
-        MyArrayList expected = new MyArrayListImpl();
+        MyArrayList<MyClass> expected = new MyArrayListImpl();
         expected.add(third);
         expected.add(one);
         expected.add(two);
@@ -63,29 +63,27 @@ public class MyArrayListTests {
     }
 
     @Test
-    public void removeByElement() {
+    void removeByElement() {
         list.add(one);
         list.add(two);
         list.add(third);
-        list.remove(list.get(1));
-        Assertions.assertEquals(list.get(1), third);
+        Assertions.assertTrue(list.remove(list.get(1)));
     }
 
     @Test
-    public void removeByindex() {
+    void removeByIndex() {
         list.add(one);
         list.add(two);
         list.add(third);
-        list.remove(1);
-        Assertions.assertEquals(list.get(1), third);
+
+        Assertions.assertEquals(two, list.remove(1));
     }
 
     @Test
-    public void contains() {
+    void contains() {
         list.add(one);
         list.add(two);
         list.add(third);
-        list.contains(third);
-        Assertions.assertEquals(true, true);
+        Assertions.assertTrue(list.contains(third));
     }
 }

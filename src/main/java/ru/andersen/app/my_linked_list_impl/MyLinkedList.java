@@ -7,15 +7,15 @@ import java.util.Comparator;
 
 
 public interface MyLinkedList<E> {
-    void add(E e);
+    boolean add(E e);
     void add(int index, E e);
     void addFirst(E e);
     void addLast(E e);
     E get(int index);
-    boolean contains(E e);
-    void set(int index, E e);
-    void remove(int index);
-    void remove(E e);
+    boolean contains(Object o);
+    E set(int index, E e);
+    E remove(int index);
+    boolean remove(Object o);
     int size();
-    void sort(Comparator<E> c);
+    void sort(Comparator<? super E> c);
 }

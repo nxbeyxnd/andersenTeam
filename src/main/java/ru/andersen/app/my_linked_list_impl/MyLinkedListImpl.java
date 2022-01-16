@@ -3,28 +3,31 @@ package ru.andersen.app.my_linked_list_impl;
 04.01.2022: Alexey created this file inside the package: ru.andersen.listImpl.myLinkerListImpl 
 */
 
-import java.util.Comparator;
+import java.util.*;
 
-public class MyLinkedListImpl<E> implements MyLinkedList<E> {
+public class MyLinkedListImpl<E> extends AbstractSequentialList<E> implements MyLinkedList<E>, List<E> {
+
     private int size = 0;
     private Node<E> first;
     private Node<E> last;
 
     /**
-     * Метод дабавляет значение в конец
+     * Метод добавляет значение в конец
      *
      * @param e значение для добавления
+     * @return всегда true
      */
     @Override
-    public void add(E e) {
+    public boolean add(E e) {
         addLast(e);
+        return true;
     }
 
     /**
      * Метод добавляет по индексу значение
      *
      * @param index индекс куда добавить
-     * @param e     значение для добалвения
+     * @param e     значение для добавления
      */
     @Override
     public void add(int index, E e) {
@@ -58,10 +61,10 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     @Override
     public void addFirst(E e) {
         if (size == 0) {
-            first = new Node<E>(null, e, null);
+            first = new Node<>(null, e, null);
         } else {
             Node<E> temp = first;
-            first = new Node<E>(null, e, temp);
+            first = new Node<>(null, e, temp);
             temp.prev = first;
         }
         this.size++;
@@ -74,13 +77,13 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      */
     @Override
     public void addLast(E e) {
-        Node<E> last = this.last;
-        Node<E> newNode = new Node<E>(last, e, null);
+        Node<E> lastNode = this.last;
+        Node<E> newNode = new Node<>(lastNode, e, null);
         this.last = newNode;
-        if (last == null) {
+        if (lastNode == null) {
             first = newNode;
         } else {
-            last.next = newNode;
+            lastNode.next = newNode;
         }
         this.size++;
     }
@@ -89,7 +92,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      * Получение значения по индексу
      *
      * @param index позиция элемента
-     * @return Значение value в ноде
+     * @return Значение value в Node
      */
     @Override
     public E get(int index) {
@@ -99,14 +102,14 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     /**
      * Проверка на существование элемента в списке
      *
-     * @param e Значение дял поиска
+     * @param o Значение дял поиска
      * @return true - в случае совпадения, false - в случае отсутствия элемента в списке
      */
     @Override
-    public boolean contains(E e) {
+    public boolean contains(Object o) {
         Node<E> current = first;
         for (int i = 0; i < size; i++) {
-            if (current.value.equals(e)) return true;
+            if (current.value.equals(o)) return true;
             current = current.next;
         }
         return false;
@@ -117,10 +120,13 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      *
      * @param index позиция для замены
      * @param e     Значение для добавления
+     * @return старое значение
      */
     @Override
-    public void set(int index, E e) {
+    public E set(int index, E e) {
+        E oldValue = getNodeByIndex(index).value;
         getNodeByIndex(index).value = e;
+        return oldValue;
     }
 
     /**
@@ -129,9 +135,9 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      * @param index позиция для удаления
      */
     @Override
-    public void remove(int index) {
+    public E remove(int index) {
         checkIndex(index);
-        Node temp = getNodeByIndex(index);
+        Node<E> temp = getNodeByIndex(index);
         if (size == 1) {
             first = null;
         } else if (index == 0) {
@@ -145,6 +151,13 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             temp.next.prev = temp.prev;
         }
         size--;
+        return temp.value;
+    }
+
+    //TODO
+    @Override
+    public ListIterator<E> listIterator(int index) {
+        return null;
     }
 
     /**
@@ -153,8 +166,8 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      * @param e значения для удаления
      */
     @Override
-    public void remove(E e) {
-        Node tmp = first;
+    public boolean remove(Object e) {
+        Node<E> tmp = first;
         while (tmp != null && tmp.value != e) {
             tmp = tmp.next;
         }
@@ -165,6 +178,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
             tmp.prev = null;
         }
         size--;
+        return true;
     }
 
     /**
@@ -180,10 +194,10 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     /**
      * Сортировка пузырьком
      *
-     * @param c Comprator<E> объекта
+     * @param c Comparator<E> объекта
      */
     @Override
-    public void sort(Comparator<E> c) {
+    public void sort(Comparator<? super E> c) {
         for (int k = size; k != 0; k--) {
             for (int i = 0, j = 1; j < size; i++, j++) {
                 if (c.compare(getNodeByIndex(i).value, getNodeByIndex(j).value) > 0) {
@@ -261,13 +275,30 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      */
     @Override
     public String toString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         Node<E> current = first;
         while (current != null) {
-            res += current.value;
-            if (current.next != null) res += ", ";
+            res.append(current.value);
+            if (current.next != null) res.append(", ");
             current = current.next;
         }
         return "[" + res + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this && o instanceof List;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        final int prime = 31;
+        Node<E> current = first;
+        while (current != null) {
+            result = prime * result + (current.value == null ? 0 : current.value.hashCode());
+            current = current.next;
+        }
+        return result;
     }
 }
