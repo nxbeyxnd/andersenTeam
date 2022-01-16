@@ -4,7 +4,7 @@ package ru.andersen.app.user_patterns.alexey.creational.factory_method.weapon_mo
 */
 
 public class Common implements Rarity {
-    private String rarity = "common";
+    private final String rarity = "common";
 
     @Override
     public String showRarity() {

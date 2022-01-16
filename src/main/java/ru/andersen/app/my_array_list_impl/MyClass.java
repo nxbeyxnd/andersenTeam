@@ -39,14 +39,6 @@ public class MyClass implements Comparable<MyClass>{
         return comp;
     }
 
-    public int compareByName(MyClass user){
-        return name.compareTo(user.name);
-    }
-
-    public int compareByAge(MyClass user){
-        return Integer.compare(this.age, user.age);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,7 +49,11 @@ public class MyClass implements Comparable<MyClass>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + age;
+        return result;
     }
 
     @Override

@@ -4,7 +4,7 @@ package ru.andersen.app.user_patterns.alexey.creational.factory_method.weapon_mo
 */
 
 public class Mythic implements Rarity{
-    private String rarity = "mythic";
+    private final String rarity = "mythic";
 
     @Override
     public String showRarity() {

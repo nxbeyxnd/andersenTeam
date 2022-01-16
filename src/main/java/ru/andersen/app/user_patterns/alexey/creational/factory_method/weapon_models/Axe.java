@@ -6,8 +6,8 @@ package ru.andersen.app.user_patterns.alexey.creational.factory_method.weapon_mo
 import ru.andersen.app.user_patterns.alexey.creational.factory_method.weapon_models.rarity.Rarity;
 
 public class Axe implements Weapon {
-    private double axeDamage = 1337d;
-    private Rarity rarity;
+    private final double axeDamage = 1337d;
+    private final Rarity rarity;
 
     public Axe(Rarity rarity) {
         this.rarity = rarity;

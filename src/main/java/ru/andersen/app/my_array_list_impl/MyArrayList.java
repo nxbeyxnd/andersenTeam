@@ -5,13 +5,13 @@ package ru.andersen.app.my_array_list_impl;/*
 import java.util.Comparator;
 
 public interface MyArrayList<E> {
-    void add(E e);
+    boolean add(E e);
     void add(int index, E e);
     E get(int index);
-    boolean contains(E e);
-    void set(int index, E e);
-    void remove(int index);
-    void remove(E e);
+    boolean contains(Object e);
+    E set(int index, E e);
+    E remove(int index);
+    boolean remove(E e);
     int size();
-    void sort(Comparator<E> e);
+    void sort(Comparator<? super E> e);
 }
