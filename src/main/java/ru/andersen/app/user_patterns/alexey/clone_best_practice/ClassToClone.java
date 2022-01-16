@@ -37,6 +37,4 @@ public class ClassToClone {
         ClassToClone classToClone = new ClassToClone(clone);
         return classToClone;
     }
-
-
 }
