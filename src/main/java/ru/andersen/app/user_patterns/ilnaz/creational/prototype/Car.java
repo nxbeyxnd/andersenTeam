@@ -25,8 +25,7 @@ public class Car implements Copyable {
 
     @Override
     public Object copy() {
-        Car car = new Car(name, engineVolume, sets);
-        return car;
+        return new Car(name, engineVolume, sets);
     }
 
     @Override

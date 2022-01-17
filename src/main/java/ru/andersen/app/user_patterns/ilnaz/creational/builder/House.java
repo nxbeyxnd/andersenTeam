@@ -17,7 +17,35 @@ public class House {
         this.area = area;
     }
 
-    public House(HouseType houseType, int floors, double area) {
+    public String getWallMaterial() {
+        return wallMaterial;
+    }
+
+    public void setWallMaterial(String wallMaterial) {
+        this.wallMaterial = wallMaterial;
+    }
+
+    public int getWindows() {
+        return windows;
+    }
+
+    public void setWindows(int windows) {
+        this.windows = windows;
+    }
+
+    public Television getTv() {
+        return tv;
+    }
+
+    public void setTv(Television tv) {
+        this.tv = tv;
+    }
+
+    public void setFloors(int floors) {
+        this.floors = floors;
+    }
+
+    public House(HouseType houseType, int floors, double area, Television television) {
         this.houseType = houseType;
         this.floors = floors;
         this.area = area;

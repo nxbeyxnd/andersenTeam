@@ -131,7 +131,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
     @Override
     public void remove(int index) {
         checkIndex(index);
-        Node temp = getNodeByIndex(index);
+        Node<E> temp = getNodeByIndex(index);
         if (size == 1) {
             first = null;
         } else if (index == 0) {
@@ -154,7 +154,7 @@ public class MyLinkedListImpl<E> implements MyLinkedList<E> {
      */
     @Override
     public void remove(E e) {
-        Node tmp = first;
+        Node<E> tmp = first;
         while (tmp != null && tmp.value != e) {
             tmp = tmp.next;
         }

@@ -7,5 +7,5 @@ public abstract class Shape {
         this.color = color;
     }
 
-    void draw(){};
+    void draw(){}
 }

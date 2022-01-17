@@ -9,6 +9,14 @@ public class Television {
         this.diagonal = diagonal;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getDiagonal() {
+        return diagonal;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

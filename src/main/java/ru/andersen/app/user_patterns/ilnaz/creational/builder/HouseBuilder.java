@@ -26,6 +26,6 @@ public class HouseBuilder implements Builder {
     }
 
     public House getResult() {
-        return new House(type, floors, area);
+        return new House(type, floors, area, television);
     }
 }

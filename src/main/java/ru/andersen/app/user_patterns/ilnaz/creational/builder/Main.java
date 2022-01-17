@@ -10,6 +10,6 @@ public class Main {
 
         House house = builder.getResult();
 
-
+        System.out.println(house);
     }
 }
