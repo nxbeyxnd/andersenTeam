@@ -3,28 +3,24 @@ package ru.andersen.app.user_patterns.alexey.structural.composite;
 15.01.2022: Alexey created this file inside the package: ru.andersen.app.user_patterns.alexey.structural.composite 
 */
 
-import ru.andersen.app.user_patterns.alexey.structural.composite.model.*;
+
+import ru.andersen.app.user_patterns.alexey.structural.composite.model.Box;
+import ru.andersen.app.user_patterns.alexey.structural.composite.model.Container;
+import ru.andersen.app.user_patterns.alexey.structural.composite.model.WareHouse;
 
 public class CompositeMain {
     public static void main(String[] args) {
-        Director director = new Director(40, "Antonina");
+        WareHouse wareHouse = new WareHouse();
+        Container container = new Container("test", 0);
 
-        StandartPeople teacher = new Teacher(20, 10, "Tamara");
+        container.addItem(new Box("testBox", 1000));
+        container.addItem(new Box("testBox1", 1000));
+        container.addItem(new Box("testBox2", 1000));
+        container.addItem(new Box("testBox3", 1000));
 
-        StandartPeople people = new ClassMate(1,10, "test");
-        StandartPeople people1 = new ClassMate(1,10, "test");
-        StandartPeople people2 = new ClassMate(1,10, "test");
-        StandartPeople people3 = new ClassMate(1,10, "test");
-        StandartPeople people4 = new ClassMate(1,10, "test");
-
-        teacher.addToClass(people);
-        teacher.addToClass(people1);
-        teacher.addToClass(people2);
-        teacher.addToClass(people3);
-        teacher.addToClass(people4);
-
-        director.addPeople(teacher);
-
-        System.out.println(director);
+        wareHouse.addItem(container);
+        wareHouse.addItem(new Box("testBox", 100));
+        
+        wareHouse.getWeight();
     }
 }
