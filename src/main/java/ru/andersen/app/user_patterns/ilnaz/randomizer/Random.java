@@ -10,7 +10,7 @@ public class Random {
         boolean areFind = false;
 
         Student student = students.get((int) (Math.random() * (33 - (1) + 1)));
-        while (areFind != true) {
+        while (!areFind) {
             if (student.isQuestion() || !student.isPresent()) {
                 randomStudentAskQuestion();
             }
@@ -21,7 +21,7 @@ public class Random {
 
     private Student randomStudentAnswers() {
         boolean areFind = false;
-        while (areFind != true) {
+        while (!areFind) {
             Student student = students.get((int) (Math.random() * (33 - (1) + 1)));
             if (student.isAnswer() || !student.isPresent()) {
                 randomStudentAnswers();
@@ -38,7 +38,7 @@ public class Random {
             Student studentQuestion = randomStudentAskQuestion();
             Student studentAnswer = randomStudentAnswers();
             if (studentQuestion.getId() == studentAnswer.getId() || studentQuestion.getTeamId() == studentAnswer.getTeamId()) {
-                studentAnswer = (Student) randomStudentAnswers();
+                studentAnswer = randomStudentAnswers();
             }
             studentQuestion.setQuestion(true);
             studentAnswer.setAnswer(true);

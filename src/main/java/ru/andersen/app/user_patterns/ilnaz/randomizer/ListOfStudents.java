@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfStudents {
-     public static List<Student> students = new ArrayList<Student>();
+     public static List<Student> students = new ArrayList<>();
         static {
             students.add(new Student(1, 1, true, "Ананьев Максим"));
             students.add(new Student(2, 1, true, "Симонов Юрий"));
@@ -99,7 +99,7 @@ public class ListOfStudents {
     public Object getAnswer(int id) {
         for (Student student : students) {
             if (student.getId() == id)
-                return (Object) student.isAnswer();
+                return student.isAnswer();
         }
         return new RuntimeException("Студент не найден");
     }
