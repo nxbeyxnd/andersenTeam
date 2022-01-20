@@ -1,19 +1,34 @@
 package ru.andersen.app.user_patterns.ilnaz.randomizer;
 
 public class Student {
-    private int id;
-    private int teamId;
-    private boolean present;
+    private Integer id;
+    private Integer teamId;
+    private Boolean present;
     private String name;
-    private boolean question;
-    private boolean answer;
+    private Boolean question;
+    private Boolean answer;
+
+    public Student() {
+    }
+
+    public Student(Student student) {
+        this.id = student.id;
+        this.teamId = student.teamId;
+        this.present = student.present;
+        this.name = student.name;
+        this.question = student.question;
+        this.answer = student.answer;
+    }
 
     public Student(int id, int teamId, boolean present, String name) {
         this.id = id;
         this.teamId = teamId;
         this.present = present;
         this.name = name;
+        question = false;
+        answer = false;
     }
+
 
     public boolean isPresent() {
         return present;
