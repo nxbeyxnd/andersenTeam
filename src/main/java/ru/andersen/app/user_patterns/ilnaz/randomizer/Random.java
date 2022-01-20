@@ -7,19 +7,29 @@ import static ru.andersen.app.user_patterns.ilnaz.randomizer.ListOfStudents.stud
 public class Random {
 
     private Student randomStudentAskQuestion() {
+        boolean areFind = false;
+
         Student student = students.get((int) (Math.random() * (33 - (1) + 1)));
-        while (student.isQuestion() || !student.isPresent()) {
-            randomStudentAskQuestion();
+        while (!areFind) {
+            if (student.isQuestion() || !student.isPresent()) {
+                randomStudentAskQuestion();
+            }
+            areFind = true;
         }
         return student;
     }
 
     private Student randomStudentAnswers() {
-        Student student = students.get((int) (Math.random() * (33 - (1) + 1)));
-        while (student.isAnswer() || !student.isPresent()) {
-            randomStudentAnswers();
+        boolean areFind = false;
+        while (!areFind) {
+            Student student = students.get((int) (Math.random() * (33 - (1) + 1)));
+            if (student.isAnswer() || !student.isPresent()) {
+                randomStudentAnswers();
+            }
+            areFind = true;
+            return student;
         }
-        return student;
+        return null;
     }
 
     public void coupleRandomStudent() {
