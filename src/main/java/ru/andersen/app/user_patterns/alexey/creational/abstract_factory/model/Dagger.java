@@ -1,8 +1,0 @@
-package ru.andersen.app.user_patterns.alexey.creational.abstract_factory.model;
-/* 
-14.01.2022: Alexey created this file inside the package: ru.andersen.app.user_patterns.alexey.creational.abstract_factory.model 
-*/
-
-public interface Dagger{
-    Double showDamage();
-}
