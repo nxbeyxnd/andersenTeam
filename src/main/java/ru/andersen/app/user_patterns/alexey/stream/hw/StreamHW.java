@@ -26,7 +26,6 @@ public class StreamHW {
                 .peek(x -> x.setAge(x.getAge() + 1))
                 .filter(x -> x.getAge() >= 18)
                 .collect(Collectors.toMap(Human::getId, x -> Arrays.asList(x.getName(), x.getSurname())));
-
         //printed "{2=[Alex, Ivanov2], 3=[Egor, Ivanov3], 4=[Max, Ivanov4], 5=[Gleb, Ivanov5]}"
         System.out.println(mapWithArrayList);
 
