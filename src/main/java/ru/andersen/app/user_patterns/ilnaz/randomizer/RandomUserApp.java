@@ -53,7 +53,7 @@ public class RandomUserApp {
             studentAnswer.setAnswer(true);
             printResult(studentQuestion, studentAnswer);
             studentQuestion = studentAnswer;
-//            scanner.nextLine();
+            scanner.nextLine();
         }
     }
 }
