@@ -1,4 +1,4 @@
-package ru.andersen.app.user_patterns.ilnaz.randomizer;
+package ru.andersen.app.randomizer;
 
 import java.util.List;
 import java.util.Locale;
@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static ru.andersen.app.user_patterns.ilnaz.randomizer.ListOfStudents.students;
+import static ru.andersen.app.randomizer.ListOfStudents.students;
 
 public class RandomUserApp {
     Random random = new Random();

@@ -1,4 +1,4 @@
-package ru.andersen.app.user_patterns.ilnaz.randomizer;
+package ru.andersen.app.randomizer;
 
 import java.util.ArrayList;
 import java.util.List;

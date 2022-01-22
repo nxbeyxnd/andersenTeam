@@ -1,4 +1,4 @@
-package ru.andersen.app.user_patterns.ilnaz.randomizer;
+package ru.andersen.app.randomizer;
 
 public class Student {
     private Integer id;
